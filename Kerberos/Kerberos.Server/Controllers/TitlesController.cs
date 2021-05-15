@@ -1,6 +1,7 @@
 using Kerberos.Server.Models;
 using Kerberos.Server.Services;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
@@ -34,7 +35,7 @@ namespace Kerberos.Server.Controllers
 		{
 			return await _titlesService.AddAliasToTitleAsync(titleId, dto.alias);
 		}
-	}
+		}
 
 	public record TitleCreateDTO(string name);
 	public record TitleAliasCreateDTO(string alias);
