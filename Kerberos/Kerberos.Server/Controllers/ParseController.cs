@@ -1,8 +1,6 @@
-using Microsoft.AspNetCore.Http;
+using Kerberos.Server.Models;
+using Kerberos.Server.Services;
 using Microsoft.AspNetCore.Mvc;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 
 namespace Kerberos.Server.Controllers
@@ -11,10 +9,17 @@ namespace Kerberos.Server.Controllers
 	[ApiController]
 	public class ParseController : ControllerBase
 	{
-		[HttpPost]
-		public async Task<IActionResult> ParseText([FromBody] string input)
+		private readonly IParseService _parseService;
+
+		public ParseController(IParseService parseService)
 		{
-			return Ok(input);
+			_parseService = parseService;
+		}
+
+		[HttpPost]
+		public async Task<ActionResult<ParseResult>> ParseText([FromBody] string input)
+		{
+			return await _parseService.ParseInput(input);
 		}
 	}
 }

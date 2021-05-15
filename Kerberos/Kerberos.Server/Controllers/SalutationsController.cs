@@ -1,5 +1,5 @@
-using Kerberos.Server.Database;
 using Kerberos.Server.Models;
+using Kerberos.Server.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
@@ -11,31 +11,23 @@ namespace Kerberos.Server.Controllers
 	[ApiController]
 	public class SalutationsController : ControllerBase
 	{
-		private readonly KerberosContext _context;
+		private readonly SalutationsService _salutationsService;
 
-		public SalutationsController(KerberosContext context)
+		public SalutationsController(SalutationsService salutationsService)
 		{
-			_context = context;
+			_salutationsService = salutationsService;
 		}
 
 		[HttpGet]
 		public async Task<IEnumerable<Salutation>> GetAllSalutations()
 		{
-			return await _context.Salutations.Include(s => s.Language).ToListAsync();
+			return await _salutationsService.GetAll();
 		}
 
 		[HttpPost]
-		public async Task<IActionResult> CreateSalutation(SalutationCreateDTO dto)
+		public async Task<ActionResult<Salutation>> CreateSalutation(SalutationCreateDTO dto)
 		{
-			await _context.Salutations.AddAsync(new Salutation
-			{
-				LanguageId = dto.languageId,
-				Value = dto.value,
-				Gender = dto.gender
-			});
-			await _context.SaveChangesAsync();
-
-			return Ok();
+			return await _salutationsService.Add(dto.value, dto.languageId, dto.gender);
 		}
 	}
 

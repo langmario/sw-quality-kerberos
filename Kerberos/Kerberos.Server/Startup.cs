@@ -1,4 +1,5 @@
 using Kerberos.Server.Database;
+using Kerberos.Server.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
@@ -32,7 +33,12 @@ namespace Kerberos.Server
 				options.UseNpgsql(Configuration.GetConnectionString("Postgres"));
 			});
 
-            services.AddControllers();
+			services.AddScoped<IParseService, ParseService>();
+			services.AddScoped<SalutationsService>();
+			services.AddScoped<TitlesService>();
+			services.AddScoped<LanguagesService>();
+
+			services.AddControllers();
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "Kerberos.Server", Version = "v1" });
