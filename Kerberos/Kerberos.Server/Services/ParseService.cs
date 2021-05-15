@@ -56,16 +56,27 @@ namespace Kerberos.Server.Services
 			{
 				if (input.Contains(title.Name))
 				{
-					parseResult.Titles.Add(title);
+					parseResult.Titles.Add(new Title
+					{
+						Id = title.Id,
+						Name = title.Name
+					});
 					input = input.Remove(input.IndexOf(title.Name), title.Name.Length).Trim();
 				}
 				else
 				{
-					foreach (var alias in title.Aliases)
+					var aliases = title.Aliases;
+					aliases.Sort((a, b) => b.Value.Length - a.Value.Length);
+					foreach (var alias in aliases)
 					{
 						if (input.Contains(alias.Value))
 						{
-							parseResult.Titles.Add(title);
+							parseResult.Titles.Add(new Title
+							{
+								Id = title.Id,
+								Name = title.Name,
+								Aliases = { alias }
+							});
 							input = input.Remove(input.IndexOf(alias.Value), alias.Value.Length).Trim();
 							break;
 						}
@@ -89,11 +100,22 @@ namespace Kerberos.Server.Services
 			{
 				for (int i = 0; i < names.Length; i++)
 				{
-					var name = names[0];
-					// Check if a name-part starts with a lowercase letter
-					if (char.IsLower(name[0]))
+					var name = names[i];
+
+					// Check if name-part ends with comma (,) -> Lastname and after comma firstname
+					if (name.EndsWith(","))
 					{
+						parseResult.Lastname = string.Join(" ", names[Range.EndAt(i + 1)]).Replace(",", "");
+						parseResult.Firstname = string.Join(" ", names[Range.StartAt(i + 1)]);
+						break;
+					}
+
+					// Check if a name-part starts with a lowercase letter -> prefix/suffix -> all following is lastname
+					if (char.IsLower(name[0]) || i == names.Length - 1)
+					{
+						parseResult.Firstname = string.Join(" ", names[Range.EndAt(i)].Where(n => !n.Contains(".")));
 						parseResult.Lastname = string.Join(" ", names[Range.StartAt(i)]);
+						break;
 					}
 				}
 			}
