@@ -54,14 +54,14 @@ namespace Kerberos.Server.Services
 
 			foreach (var title in titles)
 			{
-				if (input.Contains(title.Name))
+				if (input.Contains(title.Value))
 				{
 					parseResult.Titles.Add(new Title
 					{
 						Id = title.Id,
-						Name = title.Name
+						Value = title.Value
 					});
-					input = input.Remove(input.IndexOf(title.Name), title.Name.Length).Trim();
+					input = input.Remove(input.IndexOf(title.Value), title.Value.Length).Trim();
 				}
 				else
 				{
@@ -74,7 +74,7 @@ namespace Kerberos.Server.Services
 							parseResult.Titles.Add(new Title
 							{
 								Id = title.Id,
-								Name = title.Name,
+								Value = title.Value,
 								Aliases = { alias }
 							});
 							input = input.Remove(input.IndexOf(alias.Value), alias.Value.Length).Trim();
@@ -93,8 +93,16 @@ namespace Kerberos.Server.Services
 
 			if (names.Length == 2)
 			{
-				parseResult.Firstname = names[0];
-				parseResult.Lastname = names[1];
+				if (names[0].EndsWith(","))
+				{
+					parseResult.Lastname = names[0].Remove(names[0].Length - 1);
+					parseResult.Firstname = names[1];
+				}
+				else
+				{
+					parseResult.Lastname = names[1];
+                    parseResult.Firstname = names[0];
+                }
 			}
 			else
 			{

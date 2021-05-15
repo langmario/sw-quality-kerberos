@@ -24,7 +24,7 @@ namespace Kerberos.Server.Services
 		{
 			var addedEntry = await _context.Titles.AddAsync(new Title
 			{
-				Name = name
+				Value = name
 			});
 			await _context.SaveChangesAsync();
 
