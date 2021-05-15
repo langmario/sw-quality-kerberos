@@ -1,12 +1,25 @@
 <template>
   <div id="app">
-    <div id="nav">
+    <!-- <div id="nav">
       <router-link to="/">Default</router-link> |
       <router-link to="/language">Language</router-link> |
       <router-link to="/title">Title</router-link> |
       <router-link to="/salutation">Salutation</router-link>
+    </div> -->
+    <b-navbar>
+      <b-navbar-brand href="/">Kerberos Contact Splitter</b-navbar-brand>
+      <b-collapse id="nav-collapse" is-nav>
+        <b-navbar-nav>
+          <b-nav-item to="/">Home</b-nav-item>
+          <b-nav-item to="/language">Language</b-nav-item>
+          <b-nav-item to="/title">Title</b-nav-item>
+          <b-nav-item to="/salutation">Salutation</b-nav-item>
+        </b-navbar-nav>
+      </b-collapse>
+    </b-navbar>
+    <div class="container">
+      <router-view/>
     </div>
-    <router-view/>
   </div>
 </template>
 
@@ -15,8 +28,16 @@
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  text-align: center;
+  /* text-align: center; */
   color: #2c3e50;
+}
+
+h1, h2, h3, h4, h5 {
+  text-align: center;
+}
+
+.text-center {
+  text-align: center;
 }
 
 #nav {
