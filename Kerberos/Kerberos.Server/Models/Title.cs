@@ -1,11 +1,11 @@
 using System.Collections.Generic;
 
-namespace Server.Models
+namespace Kerberos.Server.Models
 {
 	public class Title
 	{
-		public long Id { get; set; }
-		public string Key { get; set; }
+		public int Id { get; set; }
+		public string Name { get; set; }
 		public List<TitleAlias> AliasList { get; set; }
 	}
 }

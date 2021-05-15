@@ -1,8 +1,8 @@
-namespace Server.Models
+namespace Kerberos.Server.Models
 {
 	public class TitleAlias
 	{
-		public long Id { get; set; }
+		public int Id { get; set; }
 		public string Value { get; set; }
 		public Title Title { get; set; }
 	}
