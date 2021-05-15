@@ -22,3 +22,9 @@ export interface TitleAlias {
     value : string
     title : Title
 }
+
+export interface Language {
+    id : number
+    key : string
+    name : string
+}
