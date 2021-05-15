@@ -68,8 +68,8 @@ namespace Kerberos.Server.Services
 							parseResult.Titles.Add(title);
 							input = input.Remove(input.IndexOf(alias.Value), alias.Value.Length).Trim();
 							break;
-				}
-			}
+						}
+					}
 				}
 			}
 
@@ -87,12 +87,12 @@ namespace Kerberos.Server.Services
 			}
 			else
 			{
-				for(int i = 0; i < names.Length; i++)
+				for (int i = 0; i < names.Length; i++)
 				{
 					var name = names[0];
 					// Check if a name-part starts with a lowercase letter
 					if (char.IsLower(name[0]))
-			{
+					{
 						parseResult.Lastname = string.Join(" ", names[Range.StartAt(i)]);
 					}
 				}
