@@ -17,9 +17,11 @@ namespace Kerberos.Server.Controllers
 		}
 
 		[HttpPost]
-		public async Task<ActionResult<ParseResult>> ParseText([FromBody] string input)
+		public async Task<ActionResult<ParseResult>> ParseText(ParseInputDTO dto)
 		{
-			return await _parseService.ParseInput(input);
+			return await _parseService.ParseInputAsync(dto.input);
 		}
 	}
+
+	public record ParseInputDTO(string input);
 }

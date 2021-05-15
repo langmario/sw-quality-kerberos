@@ -1,13 +1,13 @@
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace Kerberos.Server.Models
 {
 	public class ParseResult
 	{
-		public string? Salutation { get; set; }
-		public IEnumerable<string> Titles { get; set; } = Enumerable.Empty<string>();
+		public string Firstname { get; set; } = string.Empty;
+		public string Lastname { get; set; } = string.Empty;
+		public Salutation? Salutation { get; set; }
+		public List<Title> Titles { get; set; } = new List<Title>();
+
 	}
 }

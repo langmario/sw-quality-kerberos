@@ -15,12 +15,12 @@ namespace Kerberos.Server.Services
 			_context = context;
 		}
 
-		public async Task<IEnumerable<Salutation>> GetAll()
+		public async Task<IEnumerable<Salutation>> GetAllAsync()
 		{
 			return await _context.Salutations.Include(s => s.Language).ToListAsync();
 		}
 
-		public async Task<Salutation> Add(string value, int languageId, Gender gender)
+		public async Task<Salutation> AddAsync(string value, int languageId, Gender gender)
 		{
 			var addedEntry = await _context.Salutations.AddAsync(new Salutation
 			{

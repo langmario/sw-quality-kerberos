@@ -8,7 +8,7 @@ namespace Kerberos.Server.Services
 {
 	public interface IParseService
 	{
-		Task<ParseResult> ParseInput(string input);
+		Task<ParseResult> ParseInputAsync(string input);
 	}
 }
 

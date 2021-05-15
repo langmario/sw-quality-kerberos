@@ -7,6 +7,6 @@ namespace Kerberos.Server.Models
 	{
 		public int Id { get; set; }
 		public string Name { get; set; } = string.Empty;
-		public List<TitleAlias> AliasList { get; set; } = new List<TitleAlias>();
+		public List<TitleAlias> Aliases { get; set; } = new List<TitleAlias>();
 	}
 }

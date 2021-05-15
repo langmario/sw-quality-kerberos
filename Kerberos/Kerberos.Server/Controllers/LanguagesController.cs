@@ -21,13 +21,13 @@ namespace Kerberos.Server.Controllers
 		[HttpGet]
 		public async Task<IEnumerable<Language>> GetAllLanguages()
 		{
-			return await _languageService.GetAll();
+			return await _languageService.GetAllAsync();
 		}
 
 		[HttpPost]
 		public async Task<ActionResult<Language>> AddLanguage(LanguageCreateDTO dto)
 		{
-			return await _languageService.Add(dto.key, dto.name);
+			return await _languageService.AddAsync(dto.key, dto.name);
 		}
 	}
 

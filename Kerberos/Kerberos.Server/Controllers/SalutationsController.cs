@@ -21,13 +21,13 @@ namespace Kerberos.Server.Controllers
 		[HttpGet]
 		public async Task<IEnumerable<Salutation>> GetAllSalutations()
 		{
-			return await _salutationsService.GetAll();
+			return await _salutationsService.GetAllAsync();
 		}
 
 		[HttpPost]
 		public async Task<ActionResult<Salutation>> CreateSalutation(SalutationCreateDTO dto)
 		{
-			return await _salutationsService.Add(dto.value, dto.languageId, dto.gender);
+			return await _salutationsService.AddAsync(dto.value, dto.languageId, dto.gender);
 		}
 	}
 

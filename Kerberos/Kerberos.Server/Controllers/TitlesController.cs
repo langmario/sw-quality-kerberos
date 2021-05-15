@@ -21,7 +21,20 @@ namespace Kerberos.Server.Controllers
 		[HttpGet]
 		public async Task<IEnumerable<Title>> GetAllTitles()
 		{
-			return await _titlesService.GetAll();
+			return await _titlesService.GetAllAsync();
 		}
+
+		[HttpPost]
+		public async Task<ActionResult<Title>> AddTitle(string name)
+		{
+			return await _titlesService.AddAsync(name);
+		}
+
+		[HttpPost("{titleId}/aliases")]
+		public async Task<ActionResult<Title>> AddAlias(int titleId, string alias)
+		{
+			return await _titlesService.AddAliasToTitleAsync(titleId, alias);
+		}
+
 	}
 }
