@@ -6,9 +6,7 @@ namespace Kerberos.Server.Models
 	{
 		public int Id { get; set; }
 		public string Value { get; set; } = string.Empty;
-
 		[JsonIgnore]
 		public int TitleId { get; set; }
-		public Title Title { get; set; }
 	}
 }

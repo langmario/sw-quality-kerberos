@@ -1,7 +1,6 @@
 using Kerberos.Server.Models;
 using Kerberos.Server.Services;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
@@ -25,16 +24,18 @@ namespace Kerberos.Server.Controllers
 		}
 
 		[HttpPost]
-		public async Task<ActionResult<Title>> AddTitle(string name)
+		public async Task<ActionResult<Title>> AddTitle(TitleCreateDTO dto)
 		{
-			return await _titlesService.AddAsync(name);
+			return await _titlesService.AddAsync(dto.name);
 		}
 
 		[HttpPost("{titleId}/aliases")]
-		public async Task<ActionResult<Title>> AddAlias(int titleId, string alias)
+		public async Task<ActionResult<TitleAlias>> AddAlias([FromRoute] int titleId, [FromBody] TitleAliasCreateDTO dto)
 		{
-			return await _titlesService.AddAliasToTitleAsync(titleId, alias);
+			return await _titlesService.AddAliasToTitleAsync(titleId, dto.alias);
 		}
-
 	}
+
+	public record TitleCreateDTO(string name);
+	public record TitleAliasCreateDTO(string alias);
 }
