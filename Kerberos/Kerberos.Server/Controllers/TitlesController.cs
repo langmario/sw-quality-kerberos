@@ -1,8 +1,8 @@
-using Microsoft.AspNetCore.Http;
+using Kerberos.Server.Database;
+using Kerberos.Server.Models;
 using Microsoft.AspNetCore.Mvc;
-using System;
+using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 
 namespace Kerberos.Server.Controllers
@@ -11,5 +11,17 @@ namespace Kerberos.Server.Controllers
 	[ApiController]
 	public class TitlesController : ControllerBase
 	{
+		private readonly KerberosContext _context;
+
+		public TitlesController(KerberosContext context)
+		{
+			_context = context;
+		}
+
+		[HttpGet]
+		public async Task<IEnumerable<Title>> GetAllTitles()
+		{
+			return await _context.Titles.Include(t => t.AliasList).ToListAsync();
+		}
 	}
 }
