@@ -157,8 +157,8 @@ export default Vue.component("Language", {
             axios
                 .post(url, this.formItem)
                 .then(response => {
-                    const language = response.data;
-                    this.items.push(language);
+                    const item: Language = response.data;
+                    this.items.push(item);
                 })
                 .catch(error => {
                     this.showErrorMessage(error);

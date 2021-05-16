@@ -13,14 +13,13 @@ enum Gender {
 
 export interface Title {
     id : number
-    key : string
+    value : string
     aliasList : TitleAlias[]
 }
 
 export interface TitleAlias {
     id : number
     value : string
-    title : Title
 }
 
 export interface Language {
