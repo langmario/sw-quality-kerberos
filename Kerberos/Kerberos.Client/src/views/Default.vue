@@ -76,7 +76,7 @@ export default Vue.extend({
 	methods: {
 		async onSubmit(event: any) {
 			event.preventDefault();
-			const url = VUE_APP_API_BASE_URL + '/api/parse';
+			const url = VUE_APP_API_BASE_URL + '/parse';
 			const result = await axios.post(url, {
 				input: this.input,
 			});

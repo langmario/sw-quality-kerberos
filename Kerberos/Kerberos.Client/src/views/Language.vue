@@ -129,7 +129,7 @@ export default Vue.component("Language", {
     methods: {
         loadLangaugeItems() {
             this.loading = true;
-            const url = VUE_APP_API_BASE_URL + "/api/languages";
+            const url = VUE_APP_API_BASE_URL + "/languages";
             axios
                 .get(url)
                 .then(response => {
@@ -152,7 +152,7 @@ export default Vue.component("Language", {
                 return;
             }
 
-            const url = VUE_APP_API_BASE_URL + "/api/languages";
+            const url = VUE_APP_API_BASE_URL + "/languages";
             console.log(url);
             axios
                 .post(url, this.formItem)
@@ -176,7 +176,7 @@ export default Vue.component("Language", {
             if (!this.selectedItem || !this.selectedItem.id) return;
 
             const url =
-                VUE_APP_API_BASE_URL + "/api/languages/" + this.selectedItem.id;
+                VUE_APP_API_BASE_URL + "/languages/" + this.selectedItem.id;
             axios
                 .delete(url)
                 .then(response => {
