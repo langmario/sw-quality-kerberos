@@ -1,11 +1,12 @@
 export interface Salutation {
     id : number
     value : string
-    languageKey : string
+    language : Language
+    formalSalutation: string
     gender : Gender
 }
 
-enum Gender {
+export enum Gender {
     MALE,
     FEMALE,
     DIVERSE
