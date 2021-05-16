@@ -6,6 +6,7 @@ namespace Kerberos.Server.Models
 	{
 		public int Id { get; set; }
 		public string Value { get; set; } = string.Empty;
+		public string FormalSalutation { get; set; } = string.Empty;
 		[JsonIgnore]
 		public int LanguageId { get; set; }
 		public Language Language { get; set; }
