@@ -48,7 +48,7 @@
 			</b-col>
 		</b-row>
 		<b-card header="Förmliche Briefanrede" class="mt-5" v-if="wasParsed">
-			<h4>{{ selectedTitles.join(' ') }} {{ firstname }} {{ lastname }}</h4>
+			<h4>{{ salutation.formalSalutation }} {{ selectedTitles.join(' ') }} {{ firstname }} {{ lastname }}</h4>
 		</b-card>
 	</div>
 </template>

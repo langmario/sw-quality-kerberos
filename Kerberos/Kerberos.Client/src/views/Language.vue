@@ -25,7 +25,7 @@
                                 v-model="formItem.key"
                                 type="text"
                                 required
-                                placeholder="de-DE"
+                                placeholder="de"
                             ></b-input>
                         </b-form-group>
                     </div>
