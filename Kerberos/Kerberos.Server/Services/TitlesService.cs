@@ -31,6 +31,19 @@ namespace Kerberos.Server.Services
 			return addedEntry.Entity;
 		}
 
+		public async Task RemoveAsync(int titleId)
+		{
+			var title = await _context.Titles.FindAsync(titleId);
+			if (title is null)
+			{
+				throw new KeyNotFoundException();
+			}
+
+			_context.Titles.Remove(title);
+
+			await _context.SaveChangesAsync();
+		}
+
 		public async Task<TitleAlias> AddAliasToTitleAsync(int titleId, string alias)
 		{
 			var title = await _context.Titles.FindAsync(titleId);
