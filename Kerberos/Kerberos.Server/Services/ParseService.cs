@@ -1,5 +1,6 @@
 using Kerberos.Server.Models;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -54,7 +55,24 @@ namespace Kerberos.Server.Services
 
 			foreach (var title in titles)
 			{
-				if (input.Contains(title.Value))
+				var aliases = title.Aliases;
+				aliases.Sort((a, b) => b.Value.Length - a.Value.Length);
+				var aliasesFound = aliases.Where(alias => input.Contains(alias.Value));
+
+				if (aliasesFound.Any())
+				{
+					parseResult.Titles.Add(new Title
+					{
+						Id = title.Id,
+						Value = title.Value,
+						Aliases = aliasesFound.ToList()
+					});
+					foreach (var found in aliasesFound)
+					{
+						input = input.Remove(input.IndexOf(found.Value), found.Value.Length).Trim();
+					}
+				}
+				else if (input.Contains(title.Value))
 				{
 					parseResult.Titles.Add(new Title
 					{
@@ -62,25 +80,6 @@ namespace Kerberos.Server.Services
 						Value = title.Value
 					});
 					input = input.Remove(input.IndexOf(title.Value), title.Value.Length).Trim();
-				}
-				else
-				{
-					var aliases = title.Aliases;
-					aliases.Sort((a, b) => b.Value.Length - a.Value.Length);
-					foreach (var alias in aliases)
-					{
-						if (input.Contains(alias.Value))
-						{
-							parseResult.Titles.Add(new Title
-							{
-								Id = title.Id,
-								Value = title.Value,
-								Aliases = { alias }
-							});
-							input = input.Remove(input.IndexOf(alias.Value), alias.Value.Length).Trim();
-							break;
-						}
-					}
 				}
 			}
 
@@ -101,8 +100,8 @@ namespace Kerberos.Server.Services
 				else
 				{
 					parseResult.Lastname = names[1];
-                    parseResult.Firstname = names[0];
-                }
+					parseResult.Firstname = names[0];
+				}
 			}
 			else
 			{
