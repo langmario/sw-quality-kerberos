@@ -13,7 +13,6 @@
             @ok="onModalSubmit"
         >
             <b-form>
-                <!-- @submit="onSubmit" -->
                 <div class="row">
                     <div class="col">
                         <b-form-group
