@@ -27,9 +27,9 @@ namespace Kerberos.Server.Controllers
 		[HttpPost]
 		public async Task<ActionResult<Salutation>> CreateSalutation(SalutationCreateDTO dto)
 		{
-			return await _salutationsService.AddAsync(dto.value, dto.languageId, dto.gender);
+			return await _salutationsService.AddAsync(dto.value, dto.formalSalutation, dto.languageId, dto.gender);
 		}
 	}
 
-	public record SalutationCreateDTO(string value, int languageId, Gender gender);
+	public record SalutationCreateDTO(string value, string formalSalutation, int languageId, Gender gender);
 }
