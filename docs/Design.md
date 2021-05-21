@@ -9,6 +9,6 @@ Dem Benutzer ist es also möglich über einen beliebigen Browser Zugriff auf die
 
 ![Blueprint Server-Client-Architektur](./image/ServerClientBlueprint.jpg)
 
-Die Kommunikation über zwischen dem Client und Server wird über eine REST-API gemacht.
+Die Kommunikation über zwischen dem Client und Server wird über eine REST-API gemacht. Nachfolgend findet sich die Definition dieser.
 
-[TODO!!!]
+![Swagger Doku](./image/SwaggerDoku.png)
