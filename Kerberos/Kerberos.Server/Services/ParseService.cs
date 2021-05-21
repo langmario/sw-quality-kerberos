@@ -119,8 +119,8 @@ namespace Kerberos.Server.Services
 				}
 				else
 				{
-					parseResult.Firstname = string.Join(" ", names.Take(names.Count - 2));
-					parseResult.Lastname = string.Join(" ", names.Skip(names.Count - 2));
+					parseResult.Firstname = string.Join(" ", names.Take(names.Count - 1));
+					parseResult.Lastname = string.Join(" ", names.Skip(names.Count - 1));
 				}
 			}
 

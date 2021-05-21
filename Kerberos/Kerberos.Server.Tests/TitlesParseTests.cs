@@ -92,7 +92,9 @@ namespace Kerberos.Server.Tests
 			IParseService parseService = new ParseService(_salutationsMock.Object, _titlesMock.Object);
 
 			var result = await parseService.ParseInputAsync("Herr Prof. Dr. rer. nat. Dr. phil. Sandro Gutmensch");
-			Assert.Contains(result.Titles, t => t.Value == _titleDr.Value);
+			Assert.Contains(result.Titles, t => t.Value == "Dr.");
+			Assert.Contains(result.Titles.Where(t => t.Value == _titleDr.Value).FirstOrDefault().Aliases, a => a.Value == "Dr. rer. nat.");
+			Assert.Contains(result.Titles.Where(t => t.Value == _titleDr.Value).FirstOrDefault().Aliases, a => a.Value == "Dr. phil.");
 			Assert.Contains(result.Titles, t => t.Value == _titleProf.Value);
 		}
 	}
