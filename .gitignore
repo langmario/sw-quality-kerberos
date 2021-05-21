@@ -413,3 +413,5 @@ pnpm-debug.log*
 
 #notes
 tmp
+
+data/
