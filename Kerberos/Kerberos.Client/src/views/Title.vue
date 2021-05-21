@@ -76,7 +76,7 @@
                     >Neuen Titel hinzufügen</b-button
                 >
                 <b-button variant="outline-danger" @click="deleteButtonClicked"
-                    >Ausgewälte Titel löschen</b-button
+                    >Ausgewälten Titel löschen</b-button
                 >
             </b-button-group>
         </div>
