@@ -2,6 +2,7 @@ using Kerberos.Server.Database;
 using Kerberos.Server.Models;
 using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace Kerberos.Server.Services
@@ -20,11 +21,12 @@ namespace Kerberos.Server.Services
 			return await _context.Titles.Include(t => t.Aliases).ToListAsync();
 		}
 
-		public async Task<Title> AddAsync(string name)
+		public async Task<Title> AddAsync(string name, List<string>? aliases)
 		{
 			var addedEntry = await _context.Titles.AddAsync(new Title
 			{
-				Value = name
+				Value = name,
+				Aliases = aliases?.Select(a => new TitleAlias { Value = a}).ToList() ?? new List<TitleAlias>()
 			});
 			await _context.SaveChangesAsync();
 
@@ -61,6 +63,24 @@ namespace Kerberos.Server.Services
 			await _context.SaveChangesAsync();
 
 			return addedEntry.Entity;
+		}
+
+		public async Task RemoveAliasFromTitle(int titleId, int aliasId)
+		{
+			var title = await _context.Titles.FindAsync(titleId);
+			if (title is null)
+			{
+				throw new KeyNotFoundException();
+			}
+
+			var alias = title.Aliases.FirstOrDefault(a => a.Id == aliasId);
+			if (alias is null)
+			{
+				throw new KeyNotFoundException();
+			}
+
+			_context.TitleAliases.Remove(alias);
+			await _context.SaveChangesAsync();
 		}
 	}
 }

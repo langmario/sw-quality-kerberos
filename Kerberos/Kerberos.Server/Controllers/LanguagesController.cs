@@ -29,6 +29,20 @@ namespace Kerberos.Server.Controllers
 		{
 			return await _languageService.AddAsync(dto.key, dto.name);
 		}
+
+		[HttpDelete("{languageId}")]
+		public async Task<ActionResult> DeleteLanguage([FromRoute] int languageId)
+		{
+			try
+			{
+				await _languageService.RemoveAsync(languageId);
+			}
+			catch (KeyNotFoundException)
+			{
+				return NotFound();
+			}
+			return Ok();
+		}
 	}
 
 	public record LanguageCreateDTO(string key, string name);

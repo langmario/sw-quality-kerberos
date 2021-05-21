@@ -31,5 +31,17 @@ namespace Kerberos.Server.Services
 
 			return addedEntry.Entity;
 		}
+
+		public async Task RemoveAsync(int languageId)
+		{
+			var language = await _context.Languages.FindAsync(languageId);
+			if (language is null)
+			{
+				throw new KeyNotFoundException();
+			}
+			_context.Languages.Remove(language);
+
+			await _context.SaveChangesAsync();
+		}
 	}
 }

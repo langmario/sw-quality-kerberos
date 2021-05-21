@@ -29,6 +29,20 @@ namespace Kerberos.Server.Controllers
 		{
 			return await _salutationsService.AddAsync(dto.value, dto.formalSalutation, dto.languageId, dto.gender);
 		}
+
+		[HttpDelete("{salutationId}")]
+		public async Task<ActionResult> RemoveSalutation([FromRoute] int salutationId)
+		{
+			try
+			{
+				await _salutationsService.RemoveAsync(salutationId);
+			}
+			catch (KeyNotFoundException)
+			{
+				return NotFound();
+			}
+			return Ok();
+		}
 	}
 
 	public record SalutationCreateDTO(string value, string formalSalutation, int languageId, Gender gender);

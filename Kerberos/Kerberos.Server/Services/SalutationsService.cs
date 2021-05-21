@@ -33,5 +33,17 @@ namespace Kerberos.Server.Services
 
 			return addedEntry.Entity;
 		}
+
+		public async Task RemoveAsync(int salutationId)
+		{
+			var salutation = await _context.Salutations.FindAsync(salutationId);
+			if (salutation is null)
+			{
+				throw new KeyNotFoundException();
+			}
+
+			_context.Salutations.Remove(salutation);
+			await _context.SaveChangesAsync();
+		}
 	}
 }

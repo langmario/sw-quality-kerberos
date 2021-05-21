@@ -27,7 +27,7 @@ namespace Kerberos.Server.Controllers
 		[HttpPost]
 		public async Task<ActionResult<Title>> AddTitle(TitleCreateDTO dto)
 		{
-			return await _titlesService.AddAsync(dto.name);
+			return await _titlesService.AddAsync(dto.name, dto.aliases);
 		}
 
 		[HttpDelete("{titleId}")]
@@ -42,8 +42,23 @@ namespace Kerberos.Server.Controllers
 		{
 			return await _titlesService.AddAliasToTitleAsync(titleId, dto.alias);
 		}
+
+		[HttpDelete("{titleId}/aliases/{aliasId}")]
+		public async Task<ActionResult> RemoveAlias([FromRoute] int titleId, [FromRoute] int aliasId)
+		{
+			try
+			{
+				await _titlesService.RemoveAliasFromTitle(titleId, aliasId);
+			}
+			catch (KeyNotFoundException)
+			{
+				return NotFound();
+			}
+
+			return Ok();
+		}
 	}
 
-	public record TitleCreateDTO(string name);
+	public record TitleCreateDTO(string name, List<string>? aliases);
 	public record TitleAliasCreateDTO(string alias);
 }
