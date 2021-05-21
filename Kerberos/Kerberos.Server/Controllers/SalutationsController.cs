@@ -45,5 +45,5 @@ namespace Kerberos.Server.Controllers
 		}
 	}
 
-	public record SalutationCreateDTO(string value, string formalSalutation, int languageId, Gender gender);
+	public record SalutationCreateDTO(string? value, string formalSalutation, int languageId, Gender gender);
 }

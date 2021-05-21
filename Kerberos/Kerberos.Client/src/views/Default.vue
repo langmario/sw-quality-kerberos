@@ -45,7 +45,19 @@
                                 }}
                             </th>
                         </tr>
+                        <tr>
+                            <td>Formell</td>
+                            <th>{{ salutation ? salutation.formalSalutation : '' }}</th>
+                        </tr>
                     </table>
+                    <div v-else>
+                        Keine Anrede erkannt<br>
+                        Sprache?
+                        <b-select v-model="salutation">
+                            <b-select-option :value="null" selected>&lt;keine&gt;</b-select-option>
+                            <b-select-option v-for="s of allSalutations.filter(l => l.value == null)" :key="s.id" :value="s">{{ s.language.name }}</b-select-option>
+                        </b-select>
+                    </div>
                 </b-card>
             </b-col>
             <b-col>
@@ -114,6 +126,7 @@ export default Vue.extend({
     components: {},
     data() {
         return {
+            allSalutations: [] as Salutation[],
             input: "",
             wasParsed: false,
             firstname: null as string | null,
@@ -123,6 +136,10 @@ export default Vue.extend({
             selectedTitles: [] as Title[],
             comma: true
         };
+    },
+    async mounted() {
+        const { data } = await axios.get(`${VUE_APP_API_BASE_URL}/salutations`);
+        this.allSalutations = data;
     },
     methods: {
         async onSubmit(event: any) {
