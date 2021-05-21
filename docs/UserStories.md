@@ -4,7 +4,7 @@ Nachfolgende User Stories sind nach ihrer Priorität absteigend aufgelistet.
 ## User Story 1
 Als **Nutzer*in** möchte ich, dass **eingegebene Anreden automatisch in ihre Bestandteile aufgeteilt werden**, sodass **automatisiert Informationen aus der Anrede extrahiert werden können**. Die Bestandteile sind:
 
- Anrede
+* Anrede
 * Sprache
 * Geschlecht
 * Titel
@@ -38,10 +38,11 @@ Ich weiß, dass ich fertig bin, wenn:
 
 
 ## User Story 5
-Als **Nutzer*in** möchte ich, dass **es die Möglichkeit gibt Anreden neben den klassischen Geschlechtern, wie männlich und weiblich, auch als divers in der Datenbank zu vermerken**, sodass **ich alle Kunden unabhängig ihrer geschlechtlichen Zugehörigkeit einer passenden Anrede zuordnen kann**. Die Anrede `Herr` kann so beispielsweise dem männlichen Geschlecht zugeordnet werden.
+Als **Nutzer*in** möchte ich, dass **es die Möglichkeit gibt Anreden neben den klassischen Geschlechtern, wie männlich und weiblich, auch als** `Divers` **in der Datenbank zu vermerken**, sodass **ich alle Kunden, unabhängig ihrer geschlechtlichen Zugehörigkeit, einer passenden Anrede zuordnen kann**.
+Die Anrede `Herr` kann so beispielsweise dem männlichen Geschlecht zugeordnet werden.
 
 Ich weiß, dass ich fertig bin, wenn:
-* Ich eine eingetragene Anrede mit dem Geschlechtsvermerk `Divers` versehen kann.
+* Ich eine eingetragene Anrede mit dem Geschlechtsvermerk `Männlich`, `Weiblich` und `Divers` versehen kann.
 
 
 ## User Story 6
