@@ -54,3 +54,14 @@ Der\*die Nutzer\*in kann jederzeit eine Anrede hinzufügen, die erkannt werden s
 ![Anrede im Kerberos Client hinzufügen](./image/KerberosClient4_2.png)
 
 Um eine Anrede zu löschen, kann diese in der Übersicht ausgewählt werden und mit Klicken des `Ausgewählte Anrede löschen` Buttons entfernt werden.
+
+## Möglichkeit bei keiner erkannten Anrede
+Wenn keine Anrede erkannt wurde, kann über ein Menü eine Sprache ausgewählt werden.
+
+![Anrede im Kerberos Client hinzufügen](./image/KerberosClient1B_1.png)
+![Anrede im Kerberos Client hinzufügen](./image/KerberosClient1B_2.png)
+
+Ist hier eine Auswahl getroffen, wird der generierten Briefanrede die Anrede, die in der Datenbank mit einem leeren `Anrede` Feld und der ausgewählten Sprache übereinstimmt. In diesem Beispiel `Hallo`.
+
+![Anrede im Kerberos Client hinzufügen](./image/KerberosClient1B_4.png)
+![Anrede im Kerberos Client hinzufügen](./image/KerberosClient1B_3.png)
