@@ -18,6 +18,7 @@ namespace Kerberos.Server.Services
 
 		public async Task<IEnumerable<Title>> GetAllAsync()
 		{
+			// Include 1:n relation to title aliases
 			return await _context.Titles.Include(t => t.Aliases).ToListAsync();
 		}
 
@@ -48,6 +49,7 @@ namespace Kerberos.Server.Services
 
 		public async Task<TitleAlias> AddAliasToTitleAsync(int titleId, string alias)
 		{
+			// Find corresponding title first, then add the alias and save to create it
 			var title = await _context.Titles.FindAsync(titleId);
 			if (title is null)
 			{
@@ -67,6 +69,7 @@ namespace Kerberos.Server.Services
 
 		public async Task RemoveAliasFromTitle(int titleId, int aliasId)
 		{
+			// Find title first and throw error if not found, then remove alias and throw error if not found, then save changes
 			var title = await _context.Titles.Include(t => t.Aliases).FirstOrDefaultAsync(t => t.Id == titleId);
 			if (title is null)
 			{
