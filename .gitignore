@@ -412,3 +412,5 @@ pnpm-debug.log*
 *.sln
 *.sw?
 
+#notes
+tmp
