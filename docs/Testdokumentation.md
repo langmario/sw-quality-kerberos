@@ -27,7 +27,7 @@ Die Tests wurden hierbei in zwei Teile aufgeteilt. Einmal wird getestet, ob eine
 | Eingabe | Erwarteter Titel | Testergebnis |
 | - | - | - |
 | Herr Dr. Sandro Gutmensch | Dr. | ✅ |
-| Herr Dr. rer. nat. Sandro Gutmensch | Dr. (Dr. rer. nat.) | ❌ |
+| Herr Dr. rer. nat. Sandro Gutmensch | Dr. (Dr. rer. nat.) | ✅ |
 | Herr Prof. Dr. rer. nat. Dr. phil. Sandro Gutmensch | Prof., Dr. (Dr. rer. nat., Dr. phil.) | ✅ |
 
 
