@@ -8,10 +8,10 @@ namespace Kerberos.Server.Services
 {
 	public class ParseService : IParseService
 	{
-		private readonly SalutationsService _salutationsService;
-		private readonly TitlesService _titlesService;
+		private readonly ISalutationsService _salutationsService;
+		private readonly ITitlesService _titlesService;
 
-		public ParseService(SalutationsService salutationsService, TitlesService titlesService)
+		public ParseService(ISalutationsService salutationsService, ITitlesService titlesService)
 		{
 			_salutationsService = salutationsService;
 			_titlesService = titlesService;
@@ -105,25 +105,22 @@ namespace Kerberos.Server.Services
 			}
 			else
 			{
-				for (int i = 0; i < names.Count; i++)
+				if (names.Any(n => n.EndsWith(",")))
 				{
-					var name = names[i];
-
-					// Check if name-part ends with comma (,) -> Lastname and after comma firstname
-					if (name.EndsWith(","))
-					{
-						parseResult.Lastname = string.Join(" ", names.Take(i + 1)).Replace(",", "");
-						parseResult.Firstname = string.Join(" ", names.Skip(i + 1));
-						break;
-					}
-
-					// Check if a name-part starts with a lowercase letter -> prefix/suffix -> all following is lastname
-					if (char.IsLower(name[0]) || i == names.Count - 1)
-					{
-						parseResult.Firstname = string.Join(" ", names.Take(i).Where(n => !n.Contains(".")));
-						parseResult.Lastname = string.Join(" ", names.Skip(i));
-						break;
-					}
+					var index = names.ToList().FindIndex(n => n.EndsWith(","));
+					parseResult.Lastname = string.Join(" ", names.Take(index + 1)).Replace(",", "");
+					parseResult.Firstname = string.Join(" ", names.Skip(index + 1));
+				}
+				else if (names.Any(n => !string.IsNullOrEmpty(n) && char.IsLower(n[0])))
+				{
+					var index = names.ToList().FindIndex(n => !string.IsNullOrEmpty(n) && char.IsLower(n[0]));
+					parseResult.Firstname = string.Join(" ", names.Take(index));
+					parseResult.Lastname = string.Join(" ", names.Skip(index));
+				}
+				else
+				{
+					parseResult.Firstname = string.Join(" ", names.Take(names.Count - 2));
+					parseResult.Lastname = string.Join(" ", names.Skip(names.Count - 2));
 				}
 			}
 

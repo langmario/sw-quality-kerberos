@@ -7,7 +7,6 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
-using System;
 
 namespace Kerberos.Server
 {
@@ -30,9 +29,9 @@ namespace Kerberos.Server
 			});
 
 			services.AddScoped<IParseService, ParseService>();
-			services.AddScoped<SalutationsService>();
-			services.AddScoped<TitlesService>();
-			services.AddScoped<LanguagesService>();
+			services.AddScoped<ISalutationsService, SalutationsService>();
+			services.AddScoped<ITitlesService, TitlesService>();
+			services.AddScoped<ILanguagesService, LanguagesService>();
 
 			services.AddCors(options => options.AddDefaultPolicy(builder => builder.AllowAnyOrigin()));
 

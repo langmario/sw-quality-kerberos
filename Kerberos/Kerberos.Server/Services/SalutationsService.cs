@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Kerberos.Server.Services
 {
-	public class SalutationsService
+	public class SalutationsService : ISalutationsService
 	{
 		private readonly KerberosContext _context;
 

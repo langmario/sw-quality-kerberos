@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Kerberos.Server.Services
 {
-	public class LanguagesService
+	public class LanguagesService : ILanguagesService
 	{
 		private readonly KerberosContext _context;
 
