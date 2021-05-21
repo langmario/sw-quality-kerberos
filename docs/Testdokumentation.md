@@ -1,11 +1,10 @@
 # Testdokumentation
 
-Folgende Tests wurden durchgeführt, um die Funktionalität sicherzustellen. Es handelt sich dabei um Unit-Tests.
+Folgende Tests wurden durchgeführt, um die Funktionalität sicherzustellen. Es handelt sich dabei um Unit-Tests. Es wurden hierbei Tests für die Namenserkennung, für die Anredenerkennung, Titelerkennung und allgemeine Tests gemacht.
 
-Die Tests wurden hierbei in zwei Teile aufgeteilt. Einmal wird getestet, ob eine Eingabe richtig erkannt wird. Im anderen Test wird überprüft, ob die richtige Briefanrede generiert wird.
+Um zusätzlich die UI und den User-Fluss zu testen, wurden die Kundentests manuell durchgeführt.
 
-
-## Test der Namenserkennung
+## Test der Namenserkennung (Unit Tests)
 | Eingabe | Erwarteter Vorname | Erwarteter Nachname | Testergebnis |
 | - | - | - | - |
 | Sandra Berger | Sandra | Berger | ✅ |
@@ -13,16 +12,16 @@ Die Tests wurden hierbei in zwei Teile aufgeteilt. Einmal wird getestet, ob eine
 | von Leuthäuser-Schnarrenberger, Maria | Maria | von Leuthäuser-Schnarrenberger | ✅ |
 
 
-## Test der Anredenerkennung
+## Test der Anredenerkennung (Unit Tests)
 
 | Eingabe | Erwartetes Geschlecht | Testergebnis |
 | - | - | - |
-| Herr Fridolin Müller | männlich | ✅ |
-| Frau Sandra Berger | männlich | ✅ |
+| Herr Fridolin Müller | Männlich | ✅ |
+| Frau Sandra Berger | Männlich | ✅ |
 | Sandra Berger | --- | ✅ |
 
 
-## Test der Titelerkennung
+## Test der Titelerkennung (Unit Tests)
 
 | Eingabe | Erwarteter Titel | Testergebnis |
 | - | - | - |
@@ -31,28 +30,28 @@ Die Tests wurden hierbei in zwei Teile aufgeteilt. Einmal wird getestet, ob eine
 | Herr Prof. Dr. rer. nat. Dr. phil. Sandro Gutmensch | Prof., Dr. (Dr. rer. nat., Dr. phil.) | ✅ |
 
 
-## Allgemeine Tests
+## Allgemeine Tests (Unit Tests)
 
 | Eingabe |  Erwarteter Vorname | Erwarteter Nachname | Erwarteter Titel | Erwartetes Geschlecht | Testergebnis |
 | - | - | - | - | - | - |
-| Herr Prof. Dr. rer. nat. Dr.-Ing. Dr. h.c. mult. Fridolin Müller | Fridolin | Müller | Prof., Dr. | männlich | ✅ |
-| Señor Salvador Gonzales | Salvador | Gonzales | --- | männlich | ✅ |
-| Herr Tobias Raphael Meier-Müller | Tobias Raphael | Meier-Müller | --- | männlich | ✅ |
+| Herr Prof. Dr. rer. nat. Dr.-Ing. Dr. h.c. mult. Fridolin Müller | Fridolin | Müller | Prof., Dr. | Männlich | ✅ |
+| Señor Salvador Gonzales | Salvador | Gonzales | --- | Männlich | ✅ |
+| Herr Tobias Raphael Meier-Müller | Tobias Raphael | Meier-Müller | --- | Männlich | ✅ |
 
 
-## Kundentests
+## Kundentests (manuell)
 
 | Eingabe | Erwarteter Vorname | Erwarteter Nachname | Erwarteter Titel | Erwartetes Geschlecht | Erwartete Nationalität | Testergebnis |
 | - | - | - | - | - | - | - |
-Frau Sandra Berger | Sandra | Berger | --- | weiblich | Deutsch | ❌ |
-Herr Dr. Sandro Gutmensch | Sandro | Gutmensch | Dr. | männlich | Deutsch | ❌ |
-Professor Heinreich Freiherr vom Wald | Heinreich | Freiherr vom Wald | Prf. | männlich | Deutsch | ❌ |
-Mrs. Doreen Faber | Doreen | Faber | --- | weiblich | Deutsch | ❌ |
-Mme. Charlotte Noir | Charlotte | Noir | --- | weiblich | Englisch | ❌ |
-Estobar y Gonzales | Sandra | Berger | --- | weiblich | Deutsch | ❌ |
-Frau Prof. Dr. rer. nat. Maria von Leuthäuser-Schnarrenberger | Maria | von Leuthäuser-Schnarrenberger | Dr. (rer. nat.) | weiblich | Deutsch | ❌ |
-Herr Dipl. Ing. Max von Müller | Max | von Müller | Dipl. Ing. | männlich | Deutsch | ❌ |
-Dr. Russwurm, Winfried | Winfried | Russwurm | Dr. | männlich | Deutsch | ❌ |
-Herr Dr.-Ing. Dr. rer. nat. Dr. h.c. mult. Paul Steffens | Paul | Steffens | Dr. (Ing., rer. nat., h.c. mult.) | männlich | Deutsch | ❌ |
+Frau Sandra Berger | Sandra | Berger | --- | Weiblich | Deutsch | ✅ |
+Herr Dr. Sandro Gutmensch | Sandro | Gutmensch | Dr. | Männlich | Deutsch | ✅ |
+Professor Heinrich vom Wald | Heinrich | vom Wald | Prf. | --- | --- | ✅ |
+Mrs Doreen Faber | Doreen | Faber | --- | Weiblich | Englisch | ✅ |
+Mme. Charlotte Noir | Charlotte | Noir | --- | Weiblich | Französisch | ✅ |
+Senor Estobar Gonzales | Estobar | Gonzales | --- | Männlich | Spanisch | ✅ |
+Frau Prof. Dr. rer. nat. Maria von Leuthäuser-Schnarrenberger | Maria | von Leuthäuser-Schnarrenberger | Prof, Dr. (rer. nat.) | Weiblich | Deutsch | ✅ |
+Herr Dipl. Ing. Max von Müller | Max | von Müller | Dipl. Ing. | Männlich | Deutsch | ✅ |
+Dr. Russwurm, Winfried | Winfried | Russwurm | Dr. | --- | --- | ✅ |
+Herr Dr. -Ing. Dr. rer. nat. Dr. h.c. mult. Paul Steffens | Paul | Steffens | Dr. (-Ing., rer. nat., h.c. mult.) | Männlich | Deutsch | ✅ |
 
 <!-- ❌  oder ✅ -->
