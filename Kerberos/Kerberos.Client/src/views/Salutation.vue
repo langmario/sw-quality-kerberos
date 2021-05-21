@@ -149,9 +149,9 @@ export default Vue.component("Salutation", {
                     sortable: false,
                     label: "Geschlecht",
                     formatter: (value: any, key: any, item: Salutation) => {
-                        if (item.gender == Gender.MALE) return "Männlich" 
-                        if (item.gender == Gender.FEMALE) return "Weiblich" 
-                        if (item.gender == Gender.DIVERSE) return "Divers" 
+                        if (item.gender == Gender.MALE) return "Männlich"
+                        if (item.gender == Gender.FEMALE) return "Weiblich"
+                        if (item.gender == Gender.DIVERSE) return "Divers"
                     }
                 }
             ],
@@ -188,7 +188,7 @@ export default Vue.component("Salutation", {
     methods: {
         loadSalutationItems() {
             this.loading = true;
-            const url = VUE_APP_API_BASE_URL + "/api/salutations";
+            const url = VUE_APP_API_BASE_URL + "/salutations";
             axios
                 .get(url)
                 .then(response => {
@@ -203,7 +203,7 @@ export default Vue.component("Salutation", {
                 });
         },
         loadLanguages() {
-            const url = `${VUE_APP_API_BASE_URL}/api/languages`;
+            const url = `${VUE_APP_API_BASE_URL}/languages`;
             axios
                 .get(url)
                 .then(response => {
@@ -224,7 +224,7 @@ export default Vue.component("Salutation", {
             }
 
             try {
-                const url = `${VUE_APP_API_BASE_URL}/api/salutations`
+                const url = `${VUE_APP_API_BASE_URL}/salutations`
                 const response = await axios.post(url, {
                     value: this.formItem.value,
                     formalSalutation: this.formItem.formalSalutation,
@@ -251,7 +251,7 @@ export default Vue.component("Salutation", {
 
             const url =
                 VUE_APP_API_BASE_URL +
-                "/api/salutations/" +
+                "/salutations/" +
                 this.selectedItem.id;
             axios
                 .delete(url)

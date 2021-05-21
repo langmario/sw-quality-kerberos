@@ -174,7 +174,7 @@ export default Vue.component("Title", {
     methods: {
         loadTitleItems() {
             this.loading = true;
-            const url = VUE_APP_API_BASE_URL + "/api/titles";
+            const url = VUE_APP_API_BASE_URL + "/titles";
             axios
                 .get(url)
                 .then(response => {
@@ -200,7 +200,7 @@ export default Vue.component("Title", {
 
             try {
                 const response = await axios.post(
-                    `${VUE_APP_API_BASE_URL}/api/titles`,
+                    `${VUE_APP_API_BASE_URL}/titles`,
                     {
                         name: this.newTitle
                     }
@@ -210,7 +210,7 @@ export default Vue.component("Title", {
 
                 for (const alias of this.newTitleAliases) {
                     await axios.post(
-                        `${VUE_APP_API_BASE_URL}/api/titles/${createdTitle.id}/aliases`,
+                        `${VUE_APP_API_BASE_URL}/titles/${createdTitle.id}/aliases`,
                         {
                             alias
                         }
@@ -252,7 +252,7 @@ export default Vue.component("Title", {
             if (!this.selectedItem || !this.selectedItem.id) return;
 
             const url =
-                VUE_APP_API_BASE_URL + "/api/titles/" + this.selectedItem.id;
+                VUE_APP_API_BASE_URL + "/titles/" + this.selectedItem.id;
             axios
                 .delete(url)
                 .then(response => {
