@@ -171,7 +171,7 @@ export default Vue.extend({
         completeMailSalutation: function(): string {
             return `${
                 this.salutation ? this.salutation.formalSalutation : ""
-            } ${this.selectedTitles.join(" ")} ${this.firstname} ${
+            }${this.selectedTitles.length == 0 ? '' : ' '}${this.selectedTitles.join(" ")} ${this.firstname} ${
                 this.lastname
             }${this.comma ? "," : ""}`;
         }
