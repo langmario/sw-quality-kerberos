@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Kerberos.Server.Services
 {
-	public class TitlesService
+	public class TitlesService : ITitlesService
 	{
 		private readonly KerberosContext _context;
 
@@ -26,7 +26,7 @@ namespace Kerberos.Server.Services
 			var addedEntry = await _context.Titles.AddAsync(new Title
 			{
 				Value = name,
-				Aliases = aliases?.Select(a => new TitleAlias { Value = a}).ToList() ?? new List<TitleAlias>()
+				Aliases = aliases?.Select(a => new TitleAlias { Value = a }).ToList() ?? new List<TitleAlias>()
 			});
 			await _context.SaveChangesAsync();
 
@@ -67,7 +67,7 @@ namespace Kerberos.Server.Services
 
 		public async Task RemoveAliasFromTitle(int titleId, int aliasId)
 		{
-			var title = await _context.Titles.FindAsync(titleId);
+			var title = await _context.Titles.Include(t => t.Aliases).FirstOrDefaultAsync(t => t.Id == titleId);
 			if (title is null)
 			{
 				throw new KeyNotFoundException();
