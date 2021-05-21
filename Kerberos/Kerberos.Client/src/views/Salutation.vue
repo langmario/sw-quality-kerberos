@@ -67,10 +67,10 @@
             <span class="mr-2">Optionen:</span>
             <b-button-group>
                 <b-button variant="outline-success" @click="addButtonClicked"
-                    >Neues Element hinzufügen</b-button
+                    >Neue Anrede hinzufügen</b-button
                 >
                 <b-button variant="outline-danger" @click="deleteButtonClicked"
-                    >Ausgewältes Element löschen</b-button
+                    >Ausgewälte Anrede löschen</b-button
                 >
             </b-button-group>
         </div>
@@ -260,7 +260,7 @@ export default Vue.component("Salutation", {
                         const index = this.items.indexOf(this.selectedItem);
                         this.items.splice(index, 1);
                     } else {
-                        // TODO: error handling
+                        throw Error('Non 200 status code returend from server.');
                     }
                 })
                 .catch(error => {

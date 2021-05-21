@@ -1,7 +1,7 @@
 # Design
 
 ## Allgemeine Architektur
-Die Applikation ist in einer Client-Server Architektur aufgebaut. 
+Die Applikation ist in einer Client-Server-Architektur aufgebaut. 
 
 ![Overview Server-Client-Architektur](./image/ServerClientArchitecture.jpg)
 
@@ -9,6 +9,11 @@ Dem Benutzer ist es also möglich über einen beliebigen Browser Zugriff auf die
 
 ![Blueprint Server-Client-Architektur](./image/ServerClientBlueprint.jpg)
 
-Die Kommunikation über zwischen dem Client und Server wird über eine REST-API gemacht.
+Die Kommunikation über zwischen dem Client und Server wird über eine REST-API gemacht. Nachfolgend findet sich die Definition dieser.
 
-[TODO!!!]
+![Swagger Doku](./image/SwaggerDoku.png)
+
+## Hosting Architektur
+Um den Server bereitzustellen wurde folgende Docker-Architektur aufgestellt.
+
+![Docker Architektur](./image/Dockerarchitektur.jpg)
