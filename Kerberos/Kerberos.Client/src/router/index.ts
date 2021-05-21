@@ -7,6 +7,7 @@ import Salutation from '../views/Salutation.vue'
 
 Vue.use(VueRouter)
 
+// configure client routes and corresponding components
 const routes: Array<RouteConfig> = [
   {
     path: '/',
