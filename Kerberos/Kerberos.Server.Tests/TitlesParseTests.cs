@@ -84,6 +84,7 @@ namespace Kerberos.Server.Tests
 
 			var result = await parseService.ParseInputAsync("Herr Dr. rer. nat. Sandro Gutmensch");
 			Assert.Contains(result.Titles, t => t.Value == _titleDr.Value);
+			Assert.Contains(result.Titles.Where(t => t.Value == _titleDr.Value).FirstOrDefault().Aliases, a => a.Value == "Dr. rer. nat.");
 		}
 
 		[Fact]
