@@ -55,7 +55,7 @@
                         :key="title.id"
                         :value="title.value"
                         v-model="selectedTitles"
-                        >{{ title.value }} <span class="small muted"> {{title.aliases[0] ? `(${title.aliases[0].value})` : ''}}</span></b-form-checkbox
+                        >{{ title.value }} <span class="small muted"> {{title.aliases.length > 0 ? `(${title.aliases.map((element) => element.value).join(", ")})` : ''}}</span></b-form-checkbox
                     >
                 </b-card>
                 <b-card class="mt-2" header="Komma">
