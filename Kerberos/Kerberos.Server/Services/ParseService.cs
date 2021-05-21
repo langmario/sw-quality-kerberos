@@ -34,7 +34,7 @@ namespace Kerberos.Server.Services
 		async Task<(ParseResult, IList<string>)> ExtractSalutationAsync(ParseResult parseResult, IList<string> input)
 		{
 			var salutations = await _salutationsService.GetAllAsync();
-			var remaining = new List<string>();
+			var remaining = input;
 
 			// Check if input contains a known salutation
 			foreach (var salutation in salutations)
