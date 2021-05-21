@@ -63,6 +63,7 @@
 import Vue from 'vue';
 import axios from 'axios';
 import Clipboard from 'v-clipboard'
+import { Salutation, Title } from '@/models/models';
 
 Vue.use(Clipboard);
 
@@ -75,11 +76,11 @@ export default Vue.extend({
 		return {
 			input: '',
 			wasParsed: false,
-			firstname: null,
-			lastname: null,
-			titles: null,
-			salutation: null,
-			selectedTitles: [],
+			firstname: null as string | null,
+			lastname: null as string | null,
+			titles: null as Title[] | null,
+			salutation: null as Salutation | null,
+			selectedTitles: [] as Title[],
 			comma: true,
 		};
 	},

@@ -88,7 +88,7 @@
             <b-card
                 v-if="error"
                 border-variant="danger"
-                header="Es ist ein Fehler aufgetreten"
+                header="Fehler"
                 header-border-variant="danger"
                 header-text-variant="danger"
                 align="center"
