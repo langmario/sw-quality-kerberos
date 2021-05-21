@@ -12,3 +12,8 @@ Dem Benutzer ist es also möglich über einen beliebigen Browser Zugriff auf die
 Die Kommunikation über zwischen dem Client und Server wird über eine REST-API gemacht. Nachfolgend findet sich die Definition dieser.
 
 ![Swagger Doku](./image/SwaggerDoku.png)
+
+## Hosting Architektur
+Um den Server bereitzustellen wurde folgende Docker-Architektur aufgestellt.
+
+![Docker Architektur](./image/Dockerarchitektur.jpg)
