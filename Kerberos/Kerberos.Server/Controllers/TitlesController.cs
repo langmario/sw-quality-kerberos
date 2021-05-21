@@ -25,16 +25,25 @@ namespace Kerberos.Server.Controllers
 		}
 
 		[HttpPost]
-		public async Task<ActionResult<Title>> AddTitle(string name)
+		public async Task<ActionResult<Title>> AddTitle(TitleCreateDTO dto)
 		{
-			return await _titlesService.AddAsync(name);
+			return await _titlesService.AddAsync(dto.name);
+		}
+
+		[HttpDelete("{titleId}")]
+		public async Task<ActionResult> DeleteTitle([FromRoute] int titleId)
+		{
+			await _titlesService.RemoveAsync(titleId);
+			return Ok();
 		}
 
 		[HttpPost("{titleId}/aliases")]
-		public async Task<ActionResult<Title>> AddAlias(int titleId, string alias)
+		public async Task<ActionResult<TitleAlias>> AddAlias([FromRoute] int titleId, [FromBody] TitleAliasCreateDTO dto)
 		{
-			return await _titlesService.AddAliasToTitleAsync(titleId, alias);
+			return await _titlesService.AddAliasToTitleAsync(titleId, dto.alias);
 		}
-
 	}
+
+	public record TitleCreateDTO(string name);
+	public record TitleAliasCreateDTO(string alias);
 }

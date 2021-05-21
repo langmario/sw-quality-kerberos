@@ -2,15 +2,17 @@
 using Kerberos.Server.Database;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 namespace Kerberos.Server.Migrations
 {
     [DbContext(typeof(KerberosContext))]
-    partial class KerberosContextModelSnapshot : ModelSnapshot
+    [Migration("20210515181759_Titles")]
+    partial class Titles
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -45,10 +47,6 @@ namespace Kerberos.Server.Migrations
                         .HasColumnType("integer")
                         .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
 
-                    b.Property<string>("FormalSalutation")
-                        .IsRequired()
-                        .HasColumnType("text");
-
                     b.Property<int>("Gender")
                         .HasColumnType("integer");
 
@@ -73,7 +71,7 @@ namespace Kerberos.Server.Migrations
                         .HasColumnType("integer")
                         .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
 
-                    b.Property<string>("Value")
+                    b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("text");
 

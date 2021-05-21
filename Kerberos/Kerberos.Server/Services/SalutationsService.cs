@@ -20,11 +20,12 @@ namespace Kerberos.Server.Services
 			return await _context.Salutations.Include(s => s.Language).ToListAsync();
 		}
 
-		public async Task<Salutation> AddAsync(string value, int languageId, Gender gender)
+		public async Task<Salutation> AddAsync(string value, string formalSalutation, int languageId, Gender gender)
 		{
 			var addedEntry = await _context.Salutations.AddAsync(new Salutation
 			{
 				Value = value,
+				FormalSalutation = formalSalutation,
 				Gender = gender,
 				LanguageId = languageId
 			});

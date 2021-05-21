@@ -1,11 +1,12 @@
 export interface Salutation {
     id : number
     value : string
-    languageKey : string
+    language : Language
+    formalSalutation: string
     gender : Gender
 }
 
-enum Gender {
+export enum Gender {
     MALE,
     FEMALE,
     DIVERSE
@@ -13,14 +14,13 @@ enum Gender {
 
 export interface Title {
     id : number
-    key : string
+    value : string
     aliasList : TitleAlias[]
 }
 
 export interface TitleAlias {
     id : number
     value : string
-    title : Title
 }
 
 export interface Language {

@@ -24,14 +24,14 @@ namespace Kerberos.Server.Services
 		{
 			var addedEntry = await _context.Titles.AddAsync(new Title
 			{
-				Name = name
+				Value = name
 			});
 			await _context.SaveChangesAsync();
 
 			return addedEntry.Entity;
 		}
 
-		public async Task<Title> AddAliasToTitleAsync(int titleId, string alias)
+		public async Task RemoveAsync(int titleId)
 		{
 			var title = await _context.Titles.FindAsync(titleId);
 			if (title is null)
@@ -39,14 +39,28 @@ namespace Kerberos.Server.Services
 				throw new KeyNotFoundException();
 			}
 
-			title.Aliases.Add(new TitleAlias
+			_context.Titles.Remove(title);
+
+			await _context.SaveChangesAsync();
+		}
+
+		public async Task<TitleAlias> AddAliasToTitleAsync(int titleId, string alias)
+		{
+			var title = await _context.Titles.FindAsync(titleId);
+			if (title is null)
 			{
+				throw new KeyNotFoundException();
+			}
+
+			var addedEntry = await _context.TitleAliases.AddAsync(new TitleAlias
+			{
+				TitleId = title.Id,
 				Value = alias
 			});
 
 			await _context.SaveChangesAsync();
 
-			return title;
+			return addedEntry.Entity;
 		}
 	}
 }

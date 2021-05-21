@@ -1,0 +1,15 @@
+{
+  "ExpandedNodes": [
+    "",
+    "\\Kerberos",
+    "\\Kerberos\\Kerberos",
+    "\\Kerberos\\Kerberos.Server",
+    "\\Kerberos\\Kerberos.Server\\Database",
+    "\\Kerberos\\Kerberos.Server\\Migrations",
+    "\\Kerberos\\Kerberos.Server\\Models",
+    "\\Kerberos\\Kerberos.Server\\Properties",
+    "\\Kerberos\\Kerberos.Server\\Services"
+  ],
+  "SelectedNode": "\\Kerberos\\Kerberos.Server",
+  "PreviewInSolutionExplorer": false
+}
