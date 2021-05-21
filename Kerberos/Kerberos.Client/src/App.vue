@@ -10,10 +10,10 @@
       <b-navbar-brand href="/">Kerberos Contact Splitter</b-navbar-brand>
       <b-collapse id="nav-collapse" is-nav>
         <b-navbar-nav>
-          <b-nav-item to="/">Home</b-nav-item>
-          <b-nav-item to="/language">Language</b-nav-item>
-          <b-nav-item to="/title">Title</b-nav-item>
-          <b-nav-item to="/salutation">Salutation</b-nav-item>
+          <b-nav-item to="/">Startseite</b-nav-item>
+          <b-nav-item to="/language">Sprache</b-nav-item>
+          <b-nav-item to="/title">Titel</b-nav-item>
+          <b-nav-item to="/salutation">Anrede</b-nav-item>
         </b-navbar-nav>
       </b-collapse>
     </b-navbar>

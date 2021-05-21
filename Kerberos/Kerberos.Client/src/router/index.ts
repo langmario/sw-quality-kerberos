@@ -10,22 +10,22 @@ Vue.use(VueRouter)
 const routes: Array<RouteConfig> = [
   {
     path: '/',
-    name: 'Default',
+    name: 'Startseite',
     component: Default
   },
   {
     path: '/language',
-    name: 'Language',
+    name: 'Sprache',
     component: Language
   },
   {
     path: '/salutation',
-    name: 'Salutation',
+    name: 'Anrede',
     component: Salutation
   },
   {
     path: '/title',
-    name: 'Title',
+    name: 'Titel',
     component: Title
   }
 ]
