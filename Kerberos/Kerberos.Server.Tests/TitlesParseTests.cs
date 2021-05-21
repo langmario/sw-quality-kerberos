@@ -15,27 +15,6 @@ namespace Kerberos.Server.Tests
 		private readonly Mock<ISalutationsService> _salutationsMock;
 		private readonly Mock<ITitlesService> _titlesMock;
 
-		private static readonly Language _languageGerman = new Language
-		{
-			Key = "de",
-			Name = "Deutsch",
-		};
-		private static readonly Salutation _salutationMale = new Salutation
-		{
-			Value = "Herr",
-			Gender = Gender.MALE,
-			FormalSalutation = "Sehr geehrter Herr",
-			Language = _languageGerman,
-		};
-
-		private static readonly Salutation _salutationFemale = new Salutation
-		{
-			Value = "Frau",
-			Gender = Gender.FEMALE,
-			FormalSalutation = "Sehr geehrte Frau",
-			Language = _languageGerman,
-		};
-
 		private static readonly Title _titleDr = new Title
 		{
 			Id = 1,
@@ -80,10 +59,7 @@ namespace Kerberos.Server.Tests
 		public TitlesParseTests()
 		{
 			_salutationsMock = new Mock<ISalutationsService>();
-			_salutationsMock.Setup(s => s.GetAllAsync()).ReturnsAsync(new[]
-			{
-				_salutationMale, _salutationFemale
-			});
+			_salutationsMock.Setup(s => s.GetAllAsync()).ReturnsAsync(new List<Salutation>());
 
 			_titlesMock = new Mock<ITitlesService>();
 			_titlesMock.Setup(t => t.GetAllAsync()).ReturnsAsync(new[]
@@ -98,6 +74,26 @@ namespace Kerberos.Server.Tests
 			IParseService parseService = new ParseService(_salutationsMock.Object, _titlesMock.Object);
 
 			var result = await parseService.ParseInputAsync("Herr Dr. Sandro Gutmensch");
+			Assert.Contains(result.Titles, t => t.Value == _titleDr.Value);
+		}
+
+		[Fact]
+		public async void TestComplexTitleRecognition()
+		{
+			IParseService parseService = new ParseService(_salutationsMock.Object, _titlesMock.Object);
+
+			var result = await parseService.ParseInputAsync("Herr Dr. rer. nat. Sandro Gutmensch");
+			Assert.Contains(result.Titles, t => t.Value == _titleDr.Value);
+		}
+
+		[Fact]
+		public async void TestMultipleTitleRecognition()
+		{
+			IParseService parseService = new ParseService(_salutationsMock.Object, _titlesMock.Object);
+
+			var result = await parseService.ParseInputAsync("Herr Prof. Dr. rer. nat. Dr. phil. Sandro Gutmensch");
+			Assert.Contains(result.Titles, t => t.Value == _titleDr.Value);
+			Assert.Contains(result.Titles, t => t.Value == _titleProf.Value);
 		}
 	}
 }

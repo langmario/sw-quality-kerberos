@@ -36,47 +36,6 @@ namespace Kerberos.Server.Tests
 			Language = _languageGerman,
 		};
 
-		private static readonly Title _titleDr = new Title
-		{
-			Id = 1,
-			Value = "Dr.",
-			Aliases = new List<TitleAlias>
-					{
-						new TitleAlias
-						{
-							Value = "Doktor"
-						},
-						new TitleAlias
-						{
-							Value = "Doktor"
-						},
-						new TitleAlias
-						{
-							Value = "Dr. rer. nat."
-						},
-						new TitleAlias
-						{
-							Value = "Dr. phil."
-						},
-						new TitleAlias
-						{
-							Value = "Dr. h.c. mult."
-						},
-					}
-		};
-		private static readonly Title _titleProf = new Title
-		{
-			Id = 1,
-			Value = "Prof.",
-			Aliases = new List<TitleAlias>
-					{
-						new TitleAlias
-						{
-							Value = "Professor"
-						},
-					}
-		};
-
 		public SalutationParseTests()
 		{
 			_salutationsMock = new Mock<ISalutationsService>();
@@ -86,12 +45,8 @@ namespace Kerberos.Server.Tests
 			});
 
 			_titlesMock = new Mock<ITitlesService>();
-			_titlesMock.Setup(t => t.GetAllAsync()).ReturnsAsync(new[]
-			{
-				_titleDr, _titleProf
-			});
+			_titlesMock.Setup(t => t.GetAllAsync()).ReturnsAsync(new List<Title>());
 		}
-
 
 
 		[Fact]

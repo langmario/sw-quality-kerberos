@@ -11,81 +11,13 @@ namespace Kerberos.Server.Tests
 		private readonly Mock<ISalutationsService> _salutationsMock;
 		private readonly Mock<ITitlesService> _titlesMock;
 
-		private static readonly Language _languageGerman = new Language
-		{
-			Key = "de",
-			Name = "Deutsch",
-		};
-		private static readonly Salutation _salutationMale = new Salutation
-		{
-			Value = "Herr",
-			Gender = Gender.MALE,
-			FormalSalutation = "Sehr geehrter Herr",
-			Language = _languageGerman,
-		};
-
-		private static readonly Salutation _salutationFemale = new Salutation
-		{
-			Value = "Frau",
-			Gender = Gender.FEMALE,
-			FormalSalutation = "Sehr geehrte Frau",
-			Language = _languageGerman,
-		};
-
-		private static readonly Title _titleDr = new Title
-		{
-			Id = 1,
-			Value = "Dr.",
-			Aliases = new List<TitleAlias>
-					{
-						new TitleAlias
-						{
-							Value = "Doktor"
-						},
-						new TitleAlias
-						{
-							Value = "Doktor"
-						},
-						new TitleAlias
-						{
-							Value = "Dr. rer. nat."
-						},
-						new TitleAlias
-						{
-							Value = "Dr. phil."
-						},
-						new TitleAlias
-						{
-							Value = "Dr. h.c. mult."
-						},
-					}
-		};
-		private static readonly Title _titleProf = new Title
-		{
-			Id = 1,
-			Value = "Prof.",
-			Aliases = new List<TitleAlias>
-					{
-						new TitleAlias
-						{
-							Value = "Professor"
-						},
-					}
-		};
-
 		public NameParseTests()
 		{
 			_salutationsMock = new Mock<ISalutationsService>();
-			_salutationsMock.Setup(s => s.GetAllAsync()).ReturnsAsync(new[]
-			{
-				_salutationMale, _salutationFemale
-			});
+			_salutationsMock.Setup(s => s.GetAllAsync()).ReturnsAsync(new List<Salutation>());
 
 			_titlesMock = new Mock<ITitlesService>();
-			_titlesMock.Setup(t => t.GetAllAsync()).ReturnsAsync(new[]
-			{
-				_titleDr, _titleProf
-			});
+			_titlesMock.Setup(t => t.GetAllAsync()).ReturnsAsync(new List<Title>());
 		}
 
 		[Fact]
@@ -93,11 +25,10 @@ namespace Kerberos.Server.Tests
 		{
 			IParseService parseService = new ParseService(_salutationsMock.Object, _titlesMock.Object);
 
-			var result = await parseService.ParseInputAsync("Frau Sandra Berger");
+			var result = await parseService.ParseInputAsync("Sandra Berger");
 			Assert.Equal("Sandra", result.Firstname);
 			Assert.Equal("Berger", result.Lastname);
 		}
-
 
 		[Fact]
 		public async void TestComplexNameRecognition()
