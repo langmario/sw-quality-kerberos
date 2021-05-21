@@ -24,8 +24,6 @@ namespace Kerberos.Server
 		// This method gets called by the runtime. Use this method to add services to the container.
 		public void ConfigureServices(IServiceCollection services)
 		{
-			Console.WriteLine(Configuration.GetConnectionString("Postgres"));
-
 			services.AddDbContext<KerberosContext>(options =>
 			{
 				options.UseNpgsql(Configuration.GetConnectionString("Postgres"));
@@ -50,7 +48,6 @@ namespace Kerberos.Server
 		{
 			if (env.IsDevelopment())
 			{
-				Console.WriteLine("DEVELOPMENT MODE");
 				app.UseDeveloperExceptionPage();
 				app.UseSwagger();
 				app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "Kerberos.Server v1"));
