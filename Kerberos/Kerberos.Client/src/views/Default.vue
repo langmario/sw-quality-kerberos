@@ -55,7 +55,7 @@
                         :key="title.id"
                         :value="title.value"
                         v-model="selectedTitles"
-                        >{{ title.value }}</b-form-checkbox
+                        >{{ title.value }} <span class="small muted"> {{title.aliases.length > 0 ? `(${title.aliases.map((element) => element.value).join(", ")})` : ''}}</span></b-form-checkbox
                     >
                 </b-card>
                 <b-card class="mt-2" header="Komma">
@@ -87,7 +87,7 @@
                     viewBox="0 0 24 24"
                     width="24px"
                     fill="#000000"
-					@click="closeTooltip"
+                    @click="closeTooltip"
                 >
                     <path d="M0 0h24v24H0z" fill="none" />
                     <path
@@ -163,15 +163,18 @@ export default Vue.extend({
             this.salutation = null;
         },
 
-		closeTooltip(event: any){
-			setTimeout((handler: any) => this.$root.$emit('bv::hide::tooltip'), 2000);
-		}
+        closeTooltip(event: any) {
+            setTimeout(
+                (handler: any) => this.$root.$emit("bv::hide::tooltip"),
+                2000
+            );
+        }
     },
     computed: {
         completeMailSalutation: function(): string {
-            return `${
-                this.salutation ? this.salutation.formalSalutation : ""
-            }${this.selectedTitles.length == 0 ? '' : ' '}${this.selectedTitles.join(" ")} ${this.firstname} ${
+            return `${this.salutation ? this.salutation.formalSalutation : ""}${
+                this.selectedTitles.length == 0 ? "" : " "
+            }${this.selectedTitles.join(" ")} ${this.firstname} ${
                 this.lastname
             }${this.comma ? "," : ""}`;
         }
@@ -194,5 +197,13 @@ export default Vue.extend({
         cursor: pointer;
         fill: black;
     }
+}
+
+.small {
+	font-size: .75em;
+}
+
+.muted {
+	color: grey;
 }
 </style>
