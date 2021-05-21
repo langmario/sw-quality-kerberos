@@ -184,7 +184,7 @@ export default Vue.component("Language", {
                         const index = this.items.indexOf(this.selectedItem);
                         this.items.splice(index, 1);
                     } else {
-                        // TODO: error handling
+                        throw Error('Non 200 status code returend from server.');
                     }
                 })
                 .catch(error => {
