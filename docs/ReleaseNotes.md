@@ -61,7 +61,7 @@ Wenn keine Anrede erkannt wurde, kann über ein Menü eine Sprache ausgewählt w
 ![Anrede im Kerberos Client hinzufügen](./image/KerberosClient1B_1.png)
 ![Anrede im Kerberos Client hinzufügen](./image/KerberosClient1B_2.png)
 
-Ist dies gemacht wurden, wird der generierten Briefanrede die Anrede, die in der Datenbank mit einem leeren `Anrede` Feld und der ausgewählten Sprache übereinstimmt. In diesem Beispiel `Hallo`.
+Ist hier eine Auswahl getroffen, wird der generierten Briefanrede die Anrede, die in der Datenbank mit einem leeren `Anrede` Feld und der ausgewählten Sprache übereinstimmt. In diesem Beispiel `Hallo`.
 
 ![Anrede im Kerberos Client hinzufügen](./image/KerberosClient1B_4.png)
 ![Anrede im Kerberos Client hinzufügen](./image/KerberosClient1B_3.png)
