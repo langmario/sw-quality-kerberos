@@ -81,7 +81,7 @@
                 <svg
                     v-b-tooltip.click
                     title="Briefanrede kopiert"
-                    v-clipboard="completeMailSalutation"
+                    v-clipboard="() => completeMailSalutation"
                     xmlns="http://www.w3.org/2000/svg"
                     height="24px"
                     viewBox="0 0 24 24"
