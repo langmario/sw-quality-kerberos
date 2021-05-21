@@ -55,7 +55,7 @@ Der\*die Nutzer\*in kann jederzeit eine Anrede hinzufügen, die erkannt werden s
 
 Um eine Anrede zu löschen, kann diese in der Übersicht ausgewählt werden und mit Klicken des `Ausgewählte Anrede löschen` Buttons entfernt werden.
 
-### Möglichkeit bei keiner erkannten Anrede
+## Möglichkeit bei keiner erkannten Anrede
 Wenn keine Anrede erkannt wurde, kann über ein Menü eine Sprache ausgewählt werden.
 
 ![Anrede im Kerberos Client hinzufügen](./image/KerberosClient1B_1.png)
