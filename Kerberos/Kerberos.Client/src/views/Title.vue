@@ -200,10 +200,14 @@ export default Vue.component("Title", {
             }
         };
     },
+
+    // loads title items on page load
     mounted() {
         this.loadTitleItems();
     },
+
     methods: {
+        // load title items from api
         loadTitleItems() {
             this.loading = true;
             const url = VUE_APP_API_BASE_URL + "/titles";
@@ -221,6 +225,7 @@ export default Vue.component("Title", {
                 });
         },
 
+        // validates the input and submits title and corresponding aliases to the api
         async onModalSubmit(event: any) {
             if (!this.newTitle) return;
             const result = this.inputValid();
@@ -256,6 +261,7 @@ export default Vue.component("Title", {
             }
         },
 
+        // validates the input and returns an error message and validation result
         inputValid() {
             let filteredList = this.newTitleAliases.filter(
                 titleAlias => titleAlias.trim() === ""
@@ -307,6 +313,7 @@ export default Vue.component("Title", {
             this.newTitleAliases.splice(index, 1);
         },
 
+        // sends delete request for selected title to api
         deleteButtonClicked(event: any) {
             if (!this.selectedItem || !this.selectedItem.id) return;
 
@@ -336,6 +343,7 @@ export default Vue.component("Title", {
             this.errorMsg = message;
         },
 
+        // validates the alias input and sends it to the api
         onModalTitleAliasSubmit(event: any) {
             if (this.newTitleAlias.value === '') {
                 event.preventDefault();
@@ -358,6 +366,7 @@ export default Vue.component("Title", {
                 });
         },
 
+        // sends delete request for title alias to the api
         deleteTitleAlias(titleId: number, aliasId: number) {
             const url = `${VUE_APP_API_BASE_URL}/titles/${titleId}/aliases/${aliasId}`;
             axios

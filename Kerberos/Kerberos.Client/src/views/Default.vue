@@ -142,6 +142,7 @@ export default Vue.extend({
         this.allSalutations = data;
     },
     methods: {
+        // sends the input to the api for parsing
         async onSubmit(event: any) {
             event.preventDefault();
             const url = VUE_APP_API_BASE_URL + "/parse";
@@ -172,6 +173,7 @@ export default Vue.extend({
             }
         },
 
+        // resets the input fields
         reset() {
             this.wasParsed = false;
             this.firstname = null;
@@ -180,6 +182,7 @@ export default Vue.extend({
             this.salutation = null;
         },
 
+        // hides the copy-to-clipboard tooltip after 2 sec
         closeTooltip(event: any) {
             setTimeout(
                 (handler: any) => this.$root.$emit("bv::hide::tooltip"),
@@ -188,6 +191,7 @@ export default Vue.extend({
         }
     },
     computed: {
+        // getter for the complete mail salutation
         completeMailSalutation: function(): string {
             return `${this.salutation ? this.salutation.formalSalutation : ""}${
                 this.selectedTitles.length == 0 ? "" : " "

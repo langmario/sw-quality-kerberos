@@ -1,11 +1,5 @@
 <template>
   <div id="app">
-    <!-- <div id="nav">
-      <router-link to="/">Default</router-link> |
-      <router-link to="/language">Language</router-link> |
-      <router-link to="/title">Title</router-link> |
-      <router-link to="/salutation">Salutation</router-link>
-    </div> -->
     <b-navbar>
       <b-navbar-brand href="/">Kerberos Contact Splitter</b-navbar-brand>
       <b-collapse id="nav-collapse" is-nav>

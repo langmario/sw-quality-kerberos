@@ -1,3 +1,4 @@
+// Definition of typescript models according to api contract
 export interface Salutation {
     id : number
     value : string

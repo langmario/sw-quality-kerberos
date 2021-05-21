@@ -123,10 +123,14 @@ export default Vue.component("Language", {
             showModal: false
         };
     },
+
+    // load language items when page is loaded
     mounted() {
         this.loadLangaugeItems();
     },
+
     methods: {
+        // loads language items from api
         loadLangaugeItems() {
             this.loading = true;
             const url = VUE_APP_API_BASE_URL + "/languages";
@@ -143,9 +147,13 @@ export default Vue.component("Language", {
                     this.errorMsg = error;
                 });
         },
+
+        // validates the input in the form in the modal
         inputValid() {
             return this.formItem.key != "" && this.formItem.name != "";
         },
+
+        // submits the form from the modal to the api
         onModalSubmit(event: any) {
             if (!this.inputValid()) {
                 event.preventDefault();
@@ -164,6 +172,8 @@ export default Vue.component("Language", {
                     console.error(error);
                 });
         },
+
+        // opens the modal and shows the form
         addButtonClicked(event: any) {
             this.showModal = !this.showModal;
             this.formItem = {} as Language;
@@ -171,6 +181,8 @@ export default Vue.component("Language", {
             this.formItem.key = "";
             this.formItem.name = "";
         },
+
+        // sends the delete request for the selected item to the api
         deleteButtonClicked(event: any) {
             if (!this.selectedItem || !this.selectedItem.id) return;
 
@@ -190,9 +202,12 @@ export default Vue.component("Language", {
                     console.error(error);
                 });
         },
+
         onRowSelected(item: Language[]) {
             this.selectedItem = item[0];
         },
+
+        // shows error message
         showErrorMessage(message: string){
             this.error = true;
             this.errorMsg = message;

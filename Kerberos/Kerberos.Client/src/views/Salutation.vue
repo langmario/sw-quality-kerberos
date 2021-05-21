@@ -171,7 +171,9 @@ export default Vue.component("Salutation", {
             ]
         };
     },
+
     computed: {
+        // computes language options for the dropdown
         languageOptions(): any {
             return this.languages.map(language => {
                 return {
@@ -181,11 +183,15 @@ export default Vue.component("Salutation", {
             });
         }
     },
+
+    // loads the languages and salutation items on page load
     mounted() {
         this.loadSalutationItems();
         this.loadLanguages();
     },
+
     methods: {
+        // loads salutation items from the api
         loadSalutationItems() {
             this.loading = true;
             const url = VUE_APP_API_BASE_URL + "/salutations";
@@ -202,6 +208,8 @@ export default Vue.component("Salutation", {
                     this.errorMsg = error;
                 });
         },
+
+        // loads language items from the api
         loadLanguages() {
             const url = `${VUE_APP_API_BASE_URL}/languages`;
             axios
@@ -215,6 +223,8 @@ export default Vue.component("Salutation", {
                     this.errorMsg = error;
                 });
         },
+
+        // validates the form data and submits it to the api
         async onModalSubmit(event: any) {
             if (!this.inputValid()) {
                 event.preventDefault();
@@ -238,15 +248,21 @@ export default Vue.component("Salutation", {
                 console.error("Failed to create salutation", error);
             }
         },
+
+        // validates form inputs
         inputValid() {
             return this.formItem.value !== '' && this.formItem.formalSalutation !== '' && this.formItem.language != null && this.formItem.gender != null
         },
+
         resetModal() {
             this.formItem = {} as Salutation
         },
+
         addButtonClicked(event: any) {
             this.showModal = true;
         },
+
+        // sends delete request for salutations to the api
         deleteButtonClicked(event: any) {
             if (!this.selectedItem || !this.selectedItem.id) return;
 
@@ -269,9 +285,12 @@ export default Vue.component("Salutation", {
                     console.error(error);
                 });
         },
+
         onRowSelected(item: Salutation[]) {
             this.selectedItem = item[0];
         },
+
+        // shows error message
         showErrorMessage(message: string) {
             this.error = true;
             this.errorMsg = message;
