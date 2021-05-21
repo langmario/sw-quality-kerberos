@@ -82,9 +82,9 @@
         </div>
 
         <div class="mt-3">
-            <div v-if="loading">
-                Lade Daten. Bitte warten...<br /><br />
-                <b-spinner />
+            <div v-if="loading" class="loading">
+                <div class="loading-item">Lade Daten. Bitte warten...</div>
+                <div class="loading-item mt-3"><b-spinner></b-spinner></div>
             </div>
             <b-table
                 v-if="items.length != 0"
@@ -279,4 +279,15 @@ export default Vue.component("Title", {
 });
 </script>
 
-<style lang="scss"></style>
+<style lang="scss">
+.loading{
+    display: flex;
+    flex-direction: column;
+
+    .loading-item {
+        display: flex;
+        justify-content: center;
+    }
+}
+</style>
+
