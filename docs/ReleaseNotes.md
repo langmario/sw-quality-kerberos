@@ -35,7 +35,8 @@ Der\*die Nutzer\*in kann jederzeit einen Titel hinzufügen, der erkannt werden s
 
 ![Titelübersicht im Kerberos Client](./image/KerberosClient3_1.png)
 
-Über den Button `Neuen Titel hinzufügen` kann ein neuer Titel hinzugefügt werden. Hierbei kann ein `Titel` vergeben werden, dem eine beliebige Anzahl an `Aliases` (z.B. eine Abkürzung) hinzugefügt werden können.
+Über den Button `Neuen Titel hinzufügen` kann ein neuer Titel hinzugefügt werden. Hierbei kann ein `Titel` vergeben werden, dem eine beliebige Anzahl an `Alias` (z.B. eine Abkürzung) über den Button `Alias hinzufügen` hinzugefügt werden können. Über den Button `-` können diese dann wieder entfernt werden.
+Der `Titel` entspricht der generalisierten Kurzform, die auch bei der Ausgabe angezeigt wird.
 
 ![Titel im Kerberos Client hinzufügen](./image/KerberosClient3_2.png)
 
