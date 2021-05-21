@@ -180,6 +180,7 @@ export default Vue.extend({
             this.lastname = null;
             this.titles = null;
             this.salutation = null;
+            this.selectedTitles = [];
         },
 
         // hides the copy-to-clipboard tooltip after 2 sec
