@@ -22,6 +22,14 @@ namespace Kerberos.Server.Database
 				.HasMany(l => l.Salutations)
 				.WithOne(s => s.Language)
 				.OnDelete(DeleteBehavior.Restrict);
+
+			modelBuilder.Entity<Language>()
+				.HasIndex(l => l.Key)
+				.IsUnique();
+
+			modelBuilder.Entity<Salutation>()
+				.HasIndex(s => new { s.Value, s.LanguageId })
+				.IsUnique();
 		}
 	}
 }
