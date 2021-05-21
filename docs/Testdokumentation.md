@@ -1,8 +1,8 @@
 # Testdokumentation
 
-Folgende Tests wurde durchgeführt, um die Funktionalität sicherzustellen. Es handelt sich dabei um Unit-Tests.
+Folgende Tests wurden durchgeführt, um die Funktionalität sicherzustellen. Es handelt sich dabei um Unit-Tests.
 
-Die Tests wurden hierbei in zwei Teile aufgeteilt. Einmal wird getestet, ob eine Eingabe richtig erkannt wird. Der andere testet, ob die richtige Briefanrede generiert wird.
+Die Tests wurden hierbei in zwei Teile aufgeteilt. Einmal wird getestet, ob eine Eingabe richtig erkannt wird. Im anderen Test wird überprüft, ob die richtige Briefanrede generiert wird.
 
 
 ## Test der Namenserkennung
