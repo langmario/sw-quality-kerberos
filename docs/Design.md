@@ -1,7 +1,7 @@
 # Design
 
 ## Allgemeine Architektur
-Die Applikation ist in einer Client-Server Architektur aufgebaut. 
+Die Applikation ist in einer Client-Server-Architektur aufgebaut. 
 
 ![Overview Server-Client-Architektur](./image/ServerClientArchitecture.jpg)
 
