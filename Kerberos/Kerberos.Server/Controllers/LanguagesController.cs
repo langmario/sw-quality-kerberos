@@ -11,9 +11,9 @@ namespace Kerberos.Server.Controllers
 	[ApiController]
 	public class LanguagesController : ControllerBase
 	{
-		private readonly LanguagesService _languageService;
+		private readonly ILanguagesService _languageService;
 
-		public LanguagesController(LanguagesService languageService)
+		public LanguagesController(ILanguagesService languageService)
 		{
 			_languageService = languageService;
 		}

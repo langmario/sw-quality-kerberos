@@ -11,9 +11,9 @@ namespace Kerberos.Server.Controllers
 	[ApiController]
 	public class TitlesController : ControllerBase
 	{
-		private readonly TitlesService _titlesService;
+		private readonly ITitlesService _titlesService;
 
-		public TitlesController(TitlesService titlesService)
+		public TitlesController(ITitlesService titlesService)
 		{
 			_titlesService = titlesService;
 		}

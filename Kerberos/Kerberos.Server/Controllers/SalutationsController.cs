@@ -11,9 +11,9 @@ namespace Kerberos.Server.Controllers
 	[ApiController]
 	public class SalutationsController : ControllerBase
 	{
-		private readonly SalutationsService _salutationsService;
+		private readonly ISalutationsService _salutationsService;
 
-		public SalutationsController(SalutationsService salutationsService)
+		public SalutationsController(ISalutationsService salutationsService)
 		{
 			_salutationsService = salutationsService;
 		}
