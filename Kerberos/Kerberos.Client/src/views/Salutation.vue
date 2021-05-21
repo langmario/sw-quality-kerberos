@@ -232,6 +232,7 @@ export default Vue.component("Salutation", {
                     gender: this.formItem.gender
                 })
                 this.loadSalutationItems();
+                this.loadLanguages();
                 this.resetModal();
             } catch (error){
                 console.error("Failed to create salutation", error);
@@ -257,8 +258,8 @@ export default Vue.component("Salutation", {
                 .delete(url)
                 .then(response => {
                     if (response.status == 200) {
-                        const index = this.items.indexOf(this.selectedItem);
-                        this.items.splice(index, 1);
+                        this.loadSalutationItems();
+                        this.loadLanguages();
                     } else {
                         throw Error('Non 200 status code returend from server.');
                     }

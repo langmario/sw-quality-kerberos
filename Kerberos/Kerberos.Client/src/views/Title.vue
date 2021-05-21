@@ -69,6 +69,26 @@
             </div>
         </b-modal>
 
+        <b-modal
+            id="title-alias-form-modal"
+            title="Titel-Alias hinzufügen"
+            centered
+            v-model="showTitleAliasModal"
+            ok-title="Absenden"
+            ok-variant="success"
+            cancel-title="Abbrechen"
+            @ok="onModalTitleAliasSubmit"
+            @show="resetTitleAliasModal"
+        >
+            <div class="row">
+                <div class="col">
+                    <b-form-group label="Titel-Alias">
+                        <b-input v-model="newTitleAlias.value" required />
+                    </b-form-group>
+                </div>
+            </div>
+        </b-modal>
+
         <div class="mt-3">
             <span class="mr-2">Optionen:</span>
             <b-button-group>
@@ -99,6 +119,26 @@
                 selectable
                 @row-selected="onRowSelected"
             >
+                <template #cell(titleAlias)="data">
+                    <div v-for="item in data.item.aliases" :key="item.id">
+                        <span
+                            @click="deleteTitleAlias(data.item.id, item.id)"
+                            class="text-danger bold-minus"
+                            >-</span
+                        >
+                        <span class="ml-3">
+                            {{ item.value }}
+                        </span>
+                    </div>
+                    <div>
+                        <b-button
+                            variant="outline-success"
+                            size="sm"
+                            @click="addTitleAliasButtonClicked(data.item.id)"
+                            >Neuen Alias hinzufügen</b-button
+                        >
+                    </div>
+                </template>
             </b-table>
             <p
                 v-if="items.length == 0 && !loading && !error"
@@ -136,23 +176,9 @@ export default Vue.component("Title", {
             fields: [
                 { key: "value", sortable: true, label: "Titel" },
                 {
-                    key: "aliasList",
+                    key: "titleAlias",
                     sortable: false,
-                    label: "Titel-Alias",
-                    formatter: (value: any, key: any, item: any) => {
-                        let displayString = "";
-                        item.aliases.forEach(
-                            (loaclItem: TitleAlias, index: number) => {
-                                displayString =
-                                    displayString +
-                                    loaclItem.value +
-                                    (item.aliases.length - 1 > index
-                                        ? ", "
-                                        : "");
-                            }
-                        );
-                        return displayString;
-                    }
+                    label: "Titel-Alias"
                 }
             ],
             error: false,
@@ -165,7 +191,13 @@ export default Vue.component("Title", {
             showModal: false,
 
             modalError: false,
-            modalErrorMsg: "Fehler..."
+            modalErrorMsg: "Fehler...",
+
+            showTitleAliasModal: false,
+            newTitleAlias: {
+                value: "",
+                titleId: 0
+            }
         };
     },
     mounted() {
@@ -188,6 +220,7 @@ export default Vue.component("Title", {
                     this.errorMsg = error;
                 });
         },
+
         async onModalSubmit(event: any) {
             if (!this.newTitle) return;
             const result = this.inputValid();
@@ -222,32 +255,58 @@ export default Vue.component("Title", {
                 console.error("Failed to create title", error);
             }
         },
+
         inputValid() {
-            let filteredList = this.newTitleAliases.filter(titleAlias => titleAlias.trim() === '');
-            if (filteredList.length > 0) return {valid: false, message: "Titel-Alias Feld darf nicht leer sein"}
+            let filteredList = this.newTitleAliases.filter(
+                titleAlias => titleAlias.trim() === ""
+            );
+            if (filteredList.length > 0)
+                return {
+                    valid: false,
+                    message: "Titel-Alias Feld darf nicht leer sein"
+                };
 
             filteredList = this.newTitleAliases.filter(
                 titleAlias => titleAlias.trim() === this.newTitle.trim()
             );
-            if (filteredList.length > 0) return {valid: false, message: "Titel-Alias kann nicht den gleichen Text enthalten als zugehöriger Titel"};
+            if (filteredList.length > 0)
+                return {
+                    valid: false,
+                    message:
+                        "Titel-Alias kann nicht den gleichen Text enthalten als zugehöriger Titel"
+                };
             return {
                 valid: true,
-                message: ''
+                message: ""
             };
         },
+
         resetModal() {
             this.newTitle = "";
             this.newTitleAliases = [];
         },
+
+        resetTitleAliasModal() {
+            this.newTitleAlias.value = "";
+        },
+
         addButtonClicked(event: any) {
             this.showModal = true;
         },
+
+        addTitleAliasButtonClicked(titleId: number) {
+            this.showTitleAliasModal = true;
+            this.newTitleAlias.titleId = titleId;
+        },
+
         addAlias() {
             this.newTitleAliases.push("");
         },
+
         removeAlias(index: number) {
             this.newTitleAliases.splice(index, 1);
         },
+
         deleteButtonClicked(event: any) {
             if (!this.selectedItem || !this.selectedItem.id) return;
 
@@ -257,10 +316,9 @@ export default Vue.component("Title", {
                 .delete(url)
                 .then(response => {
                     if (response.status == 200) {
-                        const index = this.items.indexOf(this.selectedItem);
-                        this.items.splice(index, 1);
+                        this.loadTitleItems();
                     } else {
-                        throw Error('Non 200 status code returend from server.');
+                        throw Error("Non 200 status code returned from server");
                     }
                 })
                 .catch(error => {
@@ -268,19 +326,60 @@ export default Vue.component("Title", {
                     console.error(error);
                 });
         },
+
         onRowSelected(item: Title[]) {
             this.selectedItem = item[0];
         },
+
         showErrorMessage(message: string) {
             this.error = true;
             this.errorMsg = message;
+        },
+
+        onModalTitleAliasSubmit(event: any) {
+            if (this.newTitleAlias.value === '') {
+                event.preventDefault();
+                return;
+            }
+            const titleId = this.newTitleAlias.titleId;
+            const url = `${VUE_APP_API_BASE_URL}/titles/${titleId}/aliases`;
+            axios
+                .post(url, { alias: this.newTitleAlias.value })
+                .then(response => {
+                    if (response.status == 200) {
+                        this.loadTitleItems();
+                    } else {
+                        throw Error("Non 200 status code returned from server");
+                    }
+                })
+                .catch(error => {
+                    this.showErrorMessage(error);
+                    console.error(error);
+                });
+        },
+
+        deleteTitleAlias(titleId: number, aliasId: number) {
+            const url = `${VUE_APP_API_BASE_URL}/titles/${titleId}/aliases/${aliasId}`;
+            axios
+                .delete(url)
+                .then(response => {
+                    if (response.status == 200) {
+                        this.loadTitleItems();
+                    } else {
+                        throw Error("Non 200 status code returned from server");
+                    }
+                })
+                .catch(error => {
+                    this.showErrorMessage(error);
+                    console.error(error);
+                });
         }
     }
 });
 </script>
 
 <style lang="scss">
-.loading{
+.loading {
     display: flex;
     flex-direction: column;
 
@@ -289,5 +388,9 @@ export default Vue.component("Title", {
         justify-content: center;
     }
 }
-</style>
 
+.bold-minus {
+    font-weight: bold;
+    font-size: 1.5em;
+}
+</style>

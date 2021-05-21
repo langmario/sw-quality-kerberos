@@ -157,8 +157,7 @@ export default Vue.component("Language", {
             axios
                 .post(url, this.formItem)
                 .then(response => {
-                    const item: Language = response.data;
-                    this.items.push(item);
+                    this.loadLangaugeItems();
                 })
                 .catch(error => {
                     this.showErrorMessage(error);
@@ -181,8 +180,7 @@ export default Vue.component("Language", {
                 .delete(url)
                 .then(response => {
                     if (response.status == 200) {
-                        const index = this.items.indexOf(this.selectedItem);
-                        this.items.splice(index, 1);
+                        this.loadLangaugeItems();
                     } else {
                         throw Error('Non 200 status code returend from server.');
                     }
